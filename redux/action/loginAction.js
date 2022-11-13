@@ -1,6 +1,6 @@
 export const loginAction = (token) => {
   return {
-    type: "LOGIN_SUCCESS",
+    type: "LOGIN_REQUEST",
     payload: token,
   };
 };

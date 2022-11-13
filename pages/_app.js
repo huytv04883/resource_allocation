@@ -4,16 +4,21 @@ import Header from "../components/layout/Header";
 import MainMenu from "../components/layout/MainMenu";
 import store from "../redux/store";
 import "../styles/globals.css";
+import { QueryClientProvider, QueryClient } from "react-query";
+// Create a client
+const queryClient = new QueryClient();
 
 function MyApp({ Component, pageProps }) {
   const getLayout = Component.getLayout || ((page) => page);
   return getLayout(
     <Provider store={store}>
-      <Header />
-      <AppContent>
-        <Component {...pageProps} />
-      </AppContent>
-      <MainMenu />
+      <QueryClientProvider client={queryClient}>
+        <Header />
+        <AppContent>
+          <Component {...pageProps} />
+        </AppContent>
+        <MainMenu />
+      </QueryClientProvider>
     </Provider>
   );
 }

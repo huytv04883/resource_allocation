@@ -4,10 +4,15 @@ import { GoogleOAuthProvider } from "@react-oauth/google";
 import { WrapperLoginForm, ButtonLoginGoogle, TextLogin } from "./style";
 import GoogleIcon from "./images/google.png";
 import Image from "next/image";
+import { loginWithGoogle } from "../api/axios";
 
 const Login = () => {
   const googleLogin = useGoogleLogin({
-    onSuccess: (codeResponse) => console.log(codeResponse),
+    onSuccess: (codeResponse) => {
+      if (codeResponse) {
+        loginWithGoogle(codeResponse.code);
+      }
+    },
     flow: "auth-code",
   });
   return (
