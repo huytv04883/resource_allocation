@@ -1,38 +1,49 @@
 import React from "react";
-import { Dropdown, Space } from "antd";
+import PropTypes from "prop-types";
+import { Dropdown } from "antd";
+import { Avatar, AcountText, AcountWrapper } from "./style";
+import { UserOutlined } from "@ant-design/icons";
 
-const Acount = () => {
+const Acount = ({ acountName }) => {
   const items = [
     {
-      label: <a href="https://www.antgroup.com">1st menu item</a>,
+      label: <a href="https://www.antgroup.com">My profile</a>,
       key: "0",
     },
     {
-      label: <a href="https://www.aliyun.com">2nd menu item</a>,
+      label: <a href="https://www.aliyun.com">Logout</a>,
       key: "1",
     },
-    {
-      type: "divider",
-    },
-    {
-      label: "3rd menu item",
-      key: "3",
-    },
   ];
+
   return (
     <Dropdown
       menu={{
         items,
       }}
       trigger={["click"]}
+      placement="bottomRight"
+      arrow={{ pointAtCenter: true }}
     >
-      <a onClick={(e) => e.preventDefault()}>
-        <Space>
-          Click me
-        </Space>
-      </a>
+      <AcountWrapper>
+        <li>
+          <a
+            style={{ display: "flex", alignItems: "center" }}
+            onClick={(e) => e.preventDefault()}
+          >
+            {acountName && <AcountText>{acountName}</AcountText>}
+            <Avatar>
+              <UserOutlined style={{ fontSize: "17px" }} />
+            </Avatar>
+          </a>
+        </li>
+      </AcountWrapper>
     </Dropdown>
   );
+};
+
+Acount.propTypes = {
+  acountName: PropTypes.string,
 };
 
 export default Acount;

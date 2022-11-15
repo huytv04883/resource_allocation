@@ -32,6 +32,7 @@ export const AppContextProvider = (props) => {
     <appContext.Provider
       value={{
         logoutGoogle: logoutGoogle,
+        getToken: getToken,
       }}
     >
       {props.children}
