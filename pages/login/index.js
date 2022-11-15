@@ -4,20 +4,17 @@ import { GoogleOAuthProvider } from "@react-oauth/google";
 import { WrapperLoginForm, ButtonLoginGoogle, TextLogin } from "./style";
 import GoogleIcon from "./images/google.png";
 import Image from "next/image";
-import { loginWithGoogle } from "../api/axios";
+import { loginWithGoogle } from "../api/auth";
 import { useRouter } from "next/router";
-import { appContext } from "../../context/appContextProvider";
 
 const Login = () => {
   const router = useRouter();
-  const contextGlobal = useContext(appContext);
   const googleLogin = useGoogleLogin({
     onSuccess: async (codeResponse) => {
       if (codeResponse) {
         const { data } = await loginWithGoogle(codeResponse.code);
         if (data?.response) {
           localStorage.setItem(process.env.TOKEN_KEY, data?.response?.token);
-          contextGlobal.setToken(data?.response?.token);
           router.push("/");
         }
       }
