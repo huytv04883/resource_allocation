@@ -1,17 +1,29 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useGoogleLogin } from "@react-oauth/google";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import { WrapperLoginForm, ButtonLoginGoogle, TextLogin } from "./style";
 import GoogleIcon from "./images/google.png";
 import Image from "next/image";
 import { loginWithGoogle } from "../api/axios";
+import { useRouter } from "next/router";
+import { appContext } from "../../context/appContextProvider";
 
 const Login = () => {
+  const router = useRouter();
+  const contextGlobal = useContext(appContext);
   const googleLogin = useGoogleLogin({
-    onSuccess: (codeResponse) => {
+    onSuccess: async (codeResponse) => {
       if (codeResponse) {
-        loginWithGoogle(codeResponse.code);
+        const { data } = await loginWithGoogle(codeResponse.code);
+        if (data?.response) {
+          localStorage.setItem(process.env.TOKEN_KEY, data?.response?.token);
+          contextGlobal.setToken(data?.response?.token);
+          router.push("/");
+        }
       }
+    },
+    onError: () => {
+      console.log("Login Failed");
     },
     flow: "auth-code",
   });
@@ -34,7 +46,7 @@ export default Login;
 
 Login.getLayout = function getLayout(page) {
   return (
-    <GoogleOAuthProvider clientId="10107497848-sg7ll6o5ik7pl0e8lm8kj29eds13u765.apps.googleusercontent.com">
+    <GoogleOAuthProvider clientId={process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID}>
       {page}
     </GoogleOAuthProvider>
   );
