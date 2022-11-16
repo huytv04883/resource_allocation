@@ -9,6 +9,10 @@ const nextConfig = {
     USER_DATA: "user-data",
     PORT: 8080,
   },
+  compiler: {
+    // Enables the styled-components SWC transform
+    styledComponents: true,
+  },
 };
 
 module.exports = nextConfig;

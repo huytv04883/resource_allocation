@@ -48,3 +48,12 @@
   backface-visibility: hidden;
   min-height: calc(100% - 3.35rem);
 }
+
+.secsion {
+  border: none;
+  margin-bottom: 2rem;
+  box-shadow: 0 4px 24px 0 rgb(34 41 47 / 10%);
+  border-radius: 0.428rem;
+  background: #fff;
+  width: 100%;
+}

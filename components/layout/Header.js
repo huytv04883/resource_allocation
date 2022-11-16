@@ -7,7 +7,7 @@ const Header = () => {
   const { data } = useAcount();
   return (
     <div className={styles.header}>
-      <Acount acountName={data?.data?.name} />
+      <Acount acountName={data?.name} />
     </div>
   );
 };

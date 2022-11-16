@@ -1,4 +1,4 @@
-import { styled } from "@mui/system";
+import styled from "styled-components";
 
 export const WrapperLoginForm = styled("div")(({ theme }) => ({
   height: "100%",
@@ -16,7 +16,7 @@ export const ButtonLoginGoogle = styled("button")(({ theme }) => ({
   cursor: "pointer",
   padding: "0 15px",
   background: "#fff",
-  [theme.breakpoints.down("lg")]: {
+  "@media (max-width: 1024px)": {
     padding: "0 16px",
   },
   "&:hover": {

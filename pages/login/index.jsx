@@ -1,11 +1,10 @@
-import React, { useContext } from "react";
-import { useGoogleLogin } from "@react-oauth/google";
-import { GoogleOAuthProvider } from "@react-oauth/google";
-import { WrapperLoginForm, ButtonLoginGoogle, TextLogin } from "./style";
-import GoogleIcon from "./images/google.png";
+import { GoogleOAuthProvider, useGoogleLogin } from "@react-oauth/google";
 import Image from "next/image";
-import { loginWithGoogle } from "../api/auth";
 import { useRouter } from "next/router";
+import React from "react";
+import { loginWithGoogle } from "../../api/auth";
+import GoogleIcon from "./images/google.png";
+import { ButtonLoginGoogle, TextLogin, WrapperLoginForm } from "./style";
 
 const Login = () => {
   const router = useRouter();

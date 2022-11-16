@@ -1,17 +1,21 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { Dropdown } from "antd";
-import { Avatar, AcountText, AcountWrapper } from "./style";
 import { UserOutlined } from "@ant-design/icons";
+import { Dropdown } from "antd";
+import Link from "next/link";
+import PropTypes from "prop-types";
+import React, { useContext } from "react";
+import { appContext } from "../../../context/appContextProvider";
+import { AcountText, AcountWrapper, Avatar, ButtonLogout } from "./style";
 
 const Acount = ({ acountName }) => {
+  const { logoutGoogle } = useContext(appContext);
+
   const items = [
     {
-      label: <a href="https://www.antgroup.com">My profile</a>,
+      label: <Link href="/profile">My profile</Link>,
       key: "0",
     },
     {
-      label: <a href="https://www.aliyun.com">Logout</a>,
+      label: <ButtonLogout onClick={() => logoutGoogle()}>Logout</ButtonLogout>,
       key: "1",
     },
   ];
@@ -22,7 +26,7 @@ const Acount = ({ acountName }) => {
         items,
       }}
       trigger={["click"]}
-      placement="bottomRight"
+      placement="bottom"
       arrow={{ pointAtCenter: true }}
     >
       <AcountWrapper>

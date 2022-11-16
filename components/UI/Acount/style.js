@@ -35,3 +35,14 @@ export const AcountWrapper = styled("ul")(
   margin: 0;
   `
 );
+
+export const ButtonLogout = styled("ul")(
+  () => `
+  width: 100%;
+  background: transparent;
+  border: none;
+  outline: unset;
+  text-align: left;
+  padding: 0;
+  `
+);

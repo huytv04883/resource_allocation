@@ -13,6 +13,14 @@ export const AppContextProvider = (props) => {
     }
   };
 
+  const getUserData = () => {
+    if (typeof window !== "undefined") {
+      return localStorage.getItem(process.env.USER_DATA);
+    } else {
+      return null;
+    }
+  };
+
   const logoutGoogle = () => {
     localStorage.removeItem(process.env.TOKEN_KEY);
     localStorage.clear();
@@ -33,6 +41,7 @@ export const AppContextProvider = (props) => {
       value={{
         logoutGoogle: logoutGoogle,
         getToken: getToken,
+        getUserData: getUserData,
       }}
     >
       {props.children}
