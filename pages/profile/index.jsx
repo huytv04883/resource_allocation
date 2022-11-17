@@ -11,9 +11,9 @@ import {
   ClockCircleOutlined,
   AliwangwangOutlined,
 } from "@ant-design/icons";
-import React, { useContext } from "react";
-import { appContext } from "../../context/appContextProvider";
+import React from "react";
 import styles from "../../styles/Home.module.css";
+import { getUserData } from "../../utils/Token";
 import {
   Email,
   Media,
@@ -28,8 +28,8 @@ import {
 import { Table } from "antd";
 
 const Profile = () => {
-  const { getUserData } = useContext(appContext);
   const dataUser = JSON.parse(getUserData());
+
   const onChange = (pagination, filters, sorter, extra) => {
     console.log("params", pagination, filters, sorter, extra);
   };
