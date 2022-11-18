@@ -9,6 +9,9 @@ const axiosConfig = axios.create({
 axiosConfig.interceptors.request.use(
   function (config) {
     // Do something before request is sent
+    const ISSERVER = typeof window === "undefined";
+    const token = !ISSERVER ? localStorage.getItem(process.env.TOKEN_KEY) : "";
+    config.headers.Authorization = token ? `Bearer ${token}` : "";
     return config;
   },
   function (error) {

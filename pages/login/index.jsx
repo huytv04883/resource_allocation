@@ -2,7 +2,7 @@ import { GoogleOAuthProvider, useGoogleLogin } from "@react-oauth/google";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import React from "react";
-import { loginWithGoogle } from "../../api/auth";
+import { loginWithGoogle } from "../../api/Auth";
 import GoogleIcon from "./images/google.png";
 import { ButtonLoginGoogle, TextLogin, WrapperLoginForm } from "./style";
 
@@ -23,6 +23,7 @@ const Login = () => {
     },
     flow: "auth-code",
   });
+
   return (
     <WrapperLoginForm>
       <ButtonLoginGoogle onClick={() => googleLogin()}>

@@ -1,4 +1,4 @@
-import 'antd/dist/antd.css';
+import "antd/dist/antd.css";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { Provider } from "react-redux";
 import AppContent from "../components/layout/AppContent";

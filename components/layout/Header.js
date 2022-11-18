@@ -1,13 +1,17 @@
-import React from "react";
+import React, { useContext } from "react";
 import styles from "../../styles/Home.module.css";
-import Acount from "../UI/Acount";
-import useAcount from "../UI/Acount/useAcount";
+import Acount from "../UI/Acount/index";
+import { appContext } from "../../context/appContextProvider";
+import GoBack from "../UI/Back";
+import { getCurrentUrl } from "../../utils/CurrentUrl";
 
 const Header = () => {
-  const { data } = useAcount();
+  const currentUrl = getCurrentUrl();
+  const { dataUser } = useContext(appContext);
   return (
     <div className={styles.header}>
-      <Acount acountName={data?.name} />
+      {currentUrl !== "/" && <GoBack />}
+      <Acount acountName={dataUser?.data?.name} />
     </div>
   );
 };
